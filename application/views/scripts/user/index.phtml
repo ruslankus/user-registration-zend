@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>user list</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>username</th>
+                    <th>password</th>
+                    <th>email</th>
+                    <th>activated</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if(count($this->users)): ?>
+                <?php $i=1; foreach($this->users as $user ):?>
+                <tr>
+                    <td><?=$i?></td>
+                    <td> <a href="<?=$this->url([
+                            'controller' => 'User', 'action' => 'View', 'id' => $user->id
+                        ]) ;?>">
+                            <?=$user->username ?></a>
+                    </td>
+                    <td><?=$user->password ?></td>
+                    <td><?=$user->email ?></td>
+
+                    <td><?=($user->activated)? 'Active' : 'Disable' ?></td>
+
+                    <td>
+                        <a href="<?=$this->url([
+                            'controller' => 'User', 'action' => 'Edit', 'id' => $user->id
+                        ]) ;?>">Edit</a>
+                            &nbsp;
+                        <a href="<?=$this->url([
+                            'controller' => 'User', 'action' => 'Delete', 'id' => $user->id
+                        ]) ;?>">Delete</a>
+                    </td>
+                </tr>
+                <?php $i++; endforeach; ?>
+                <?php else:?>
+                    <tr>
+                        <td colspan="5" class="text-center">List is empty</td>
+                    </tr>
+                <?php endif;?>
+                </tbody>
+            </table>
+
+            <p>
+                <a href="<?=$this->url([
+                    'controller' => 'User', 'action' => 'Add',
+                ]) ;?>">Add user</a>
+
+            </p>
+        </div>
+    </div>
+</div>

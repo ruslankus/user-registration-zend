@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h4>user detais</h4>
+
+            <p>Usernane: <?=$this->user->username?></p>
+
+            <p>Email: <?=$this->user->email ?></p>
+
+            <p><a href="<?=$this->url([
+                'controller' => 'User', 'action' => 'index', 'id' => null
+            ]);?>">to list</a></p>
+
+        </div>
+    </div>
+</div>

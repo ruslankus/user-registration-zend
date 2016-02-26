@@ -1,0 +1,10 @@
+<h2>Hello , how are you</h2>
+
+
+<?php $link =  $this->serverUrl() . $this->baseUrl() . $this->url([
+    'controller' => 'user', 'action' => 'confirm', 'id' => $this->user->id, 'code' => $this->user->code
+],null,true); ?>
+
+    <a href="<?=$link?>"><?=$link?></a>
+
+<p>Best regards </p>

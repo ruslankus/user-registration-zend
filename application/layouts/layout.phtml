@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <?php echo  $this->headTitle(); ?>
+
+    <?php
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/css/bootstrap.css','screen' );
+        $this->headLink()->appendStylesheet($this->baseUrl() . '/css/style.css','screen' );
+
+        echo $this->headLink();
+    ?>
+
+</head>
+<body>
+
+<header>
+    <h2><?=$this->title ?></h2>
+</header>
+<section>
+    <?=$this->layout()->content?>
+</section>
+<aside></aside>
+<footer></footer>
+
+</body>
+</html>
