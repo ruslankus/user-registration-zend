@@ -1,9 +1,9 @@
 <?php
 
-class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Temp extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'user';
+    protected $_name = 'User';
     protected $_primary = 'id';
     //protected $_schema = 'zend-local';
 
@@ -14,7 +14,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
         //$cache->remove(md5(null));
         $bootstrap = Zend_Controller_Front::getInstance()->getParam('bootstrap');
         $multidb = $bootstrap->getPluginResource('multidb');
-        $this->_db = Zend_Registry::get('db1');
+        $this->_db = Zend_Registry::get('db2');
 
     }
 

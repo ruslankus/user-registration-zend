@@ -7,9 +7,13 @@
 
             <p>Email: <?=$this->user->email ?></p>
 
-            <p><a href="<?=$this->url([
+            <p>
+                <a href="<?=$this->url([
                 'controller' => 'User', 'action' => 'index', 'id' => null
-            ]);?>">to list</a></p>
+            ]);?>">to list</a>
+
+
+            </p>
 
         </div>
     </div>

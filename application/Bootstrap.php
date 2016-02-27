@@ -24,6 +24,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }//_initViewHelper
 
 
+    protected function _initDb() {
+        $this->bootstrap('multidb');
+
+        $resource = $this->getPluginResource('multidb');
+
+        Zend_Registry::set("multidb", $resource);
+        Zend_Registry::set("db1",$resource->getDb('db1'));
+        Zend_Registry::set("db2",$resource->getDb('db2'));
+
+    }
+
+
     protected function _initEmail()
     {
         $email_config = [

@@ -116,14 +116,21 @@ class UserController extends Zend_Controller_Action
             $data = $request->getPost();
             if($form->isValid($data)){
 
-                $userModel = new Application_Model_User();
+                $userModel = new Application_Model_Temp();
+
+
                 $userModel->fill($form->getValues());
                 $userModel->password = sha1($userModel->password);
                 $userModel->code = uniqid();
                 $userModel->created = date('Y-m-g H:t:s');
                 $userModel->save();
-                $userModel->sendActivationEmail();
-                $this->_helper->redirector('index');
+                $result =  $userModel->sendActivationEmail();
+
+                $this->view->message = ($result)? 'Activation letter sent' : 'sent letter failed';
+
+                $this->_helper->viewRenderer('user/sent', null, true);
+
+                //$this->_helper->redirector('index');
             }
 
         }
@@ -135,25 +142,39 @@ class UserController extends Zend_Controller_Action
 
     public function confirmAction(){
 
-        $user_id = $this->_getParam('id');
+        $user_id = (int)$this->_getParam('id');
         $code = $this->_getParam('code');
 
-        $userModel = new Application_Model_User($user_id);
+        if(!empty($user_id)) {
 
-        if($userModel->activated){
-            $this->view->message = 'Ваш аккаунт уже активирован';
-        }else{
-            if($userModel->code == $code){
+            $userTmpModel = new Application_Model_Temp($user_id);
+
+
+            if ($userTmpModel->code == $code){
+
+                $userModel = new Application_Model_User();
+
+                $data = $userTmpModel->populateForm();
+                unset($data['id'], $data['activated'], $data['created']);
+
+                $userModel->fill($data);
+                $userModel->created = date('Y-m-g H:t:s');
                 $userModel->activated = true;
                 $userModel->save();
-                $this->view->message = 'Ваш аккаунт активирован';
 
-            }else{
+                $this->view->message = "Регистрация завершина";
+
+                $this->render();
+                //die();
+            }else {
+
                 $this->view->message = 'Неправильные данные активации';
+                $this->render();
             }
-
-
+        }else{
+            $this->view->message = 'Неправильные данные активации - не правильный емайл';
         }
+
     }
 
 
