@@ -5,6 +5,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
     protected $_name = 'user';
     protected $_primary = 'id';
+    protected $_dependentTables = [
+        'Application_Model_DbTable_Questions','Application_Model_DbTable_Answers'
+
+    ];
     //protected $_schema = 'zend-local';
 
 

@@ -11,6 +11,9 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Question">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false">
         <formFile formName="User"/>
@@ -20,6 +23,8 @@
         <modelFile modelName="User"/>
         <dbTableDirectory>
           <dbTableFile dbTableName="User"/>
+          <dbTableFile dbTableName="Questions"/>
+          <dbTableFile dbTableName="Answers"/>
         </dbTableDirectory>
         <modelFile modelName="UserMapper"/>
       </modelsDirectory>
@@ -32,6 +37,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Question">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

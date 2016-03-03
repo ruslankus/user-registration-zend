@@ -1,3 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <?php if($this->identity):?>
+                <?php if(Zend_Registry::get('acl')->isAllowed($this->identity->role,'user','add') ): ?>
+
+                    <a href="#">Add user</a>
+
+                <?php endif ?>
+            <?php endif  ?>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
 <h1>Hello world!</h1>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, nostrum, placeat. Asperiores atque, et itaque
@@ -7,3 +25,6 @@
 <p>A accusamus adipisci aliquid architecto assumenda at cumque cupiditate debitis dicta, dolor doloremque doloribus
     eligendi eveniet exercitationem fugit id illum iste itaque laudantium maiores minus modi mollitia nam numquam
     officiis possimus provident quas qui quisquam reiciendis reprehenderit sunt vel voluptatibus!</p>
+        </div>
+    </div>
+</div>

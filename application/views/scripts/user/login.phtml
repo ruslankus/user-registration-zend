@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <?php if(!empty($this->message)): ?>
+                <div class="alert alert-danger" role="alert"><?=$this->message?></div>
+            <?php endif; ?>
+            </div>
+
+            <div class="form">
+
+                <?php if($this->identity):?>
+                    <p> Вы уже залогинены  </p>
+                <?php else:?>
+                    <?=$this->form; ?>
+                <?php endif;?>
+            </div>
+
+        </div>
+    </div>
+</div>

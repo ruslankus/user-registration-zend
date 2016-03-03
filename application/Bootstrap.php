@@ -20,8 +20,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headTitle('SimpleBlog');
         $view->headTitle()->setSeparator(" :: ");
 
+        if(!Zend_Auth::getInstance()->hasIdentity()){
+            $view->identity = false;
+
+        }else{
+            $view->identity = Zend_Auth::getInstance()->getIdentity();
+        }
 
     }//_initViewHelper
+
+
+    protected function _initPlugins()
+    {
+        $front = Zend_Controller_Front::getInstance();
+        $front->registerPlugin(new Application_Plugin_Acl());
+
+    }//initPlugins
+
+
+    protected function _initAcl()
+    {
+
+
+    }//initAcl
 
 
     protected function _initDb() {

@@ -43,6 +43,12 @@ class ErrorController extends Zend_Controller_Action
         $this->view->request   = $errors->request;
     }
 
+
+    public function deniedAction()
+    {
+
+    }
+
     public function getLog()
     {
         $bootstrap = $this->getInvokeArg('bootstrap');
