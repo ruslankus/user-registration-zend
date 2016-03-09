@@ -10,7 +10,22 @@ class QuestionController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->render();
+        $db = Zend_Registry::get('db1');
+        $select = $db->select();
+        $select->from(['q' => 'questions'])
+            ->join(['u' => 'user'],'q.author_id = u.id', 'username')
+            ->joinLeft(['a' => 'answers'], 'a.question_id = q.id', ['answers_count' => 'COUNT(a.id)'])
+            ->group('q.id');
+
+
+
+        $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbSelect($select));
+
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $paginator->setItemCountPerPage(1);
+
+        $this->view->paginator = $paginator;
+
     }
 
 

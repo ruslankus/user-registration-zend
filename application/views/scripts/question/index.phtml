@@ -1,4 +1,38 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Question</b> and script/action name <b>index</b></p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <?php //Zend_Debug::dump($this->paginator);?>
+            <?php  if(count($this->paginator) > 0): ?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>created</th>
+                            <th>username</th>
+                            <th>answers count</th>
+                        </tr>
+                    </thead>
+                    <?php foreach($this->paginator as $arr):
+                    
+                    ?>
+                    <tr>
+                        <td><?=$arr['id']?></td>
+                        <td><?=$arr['title']?></td>
+                        <td><?=$arr['description']?></td>
+                        <td><?=$arr['created']?></td>
+                        <td><?=$arr['username']?></td>
+                        <td><?=$arr['answers_count']?></td>
+                    </tr>
+                </table>
+                <?php  endforeach; ?>
+
+                <?php echo $this->paginationControl($this->paginator,'Sliding',
+                    'partials/my_paginator.phtml'); ?>
+            <?php else: ?>
+                <p class="text-center"> List is empty </p>
+            <?php endif;?>
+        </div>
+    </div>
 </div>
